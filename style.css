@@ -497,21 +497,69 @@ header, .header, [class*="header"] {
     .ai-engine, [class*="engine"] { flex: 2 1 600px !important; }
 }
 
-/* Mobile View (Jab screen choti ho) */
+ /* ====================================================
+   GLOBAL RESPONSIVE ENGINE (LAPTOP + MOBILE)
+   ==================================================== */
+
+*, *::before, *::after {
+    box-sizing: border-box !important;
+}
+
+html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important; 
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Header Banner Fix */
+header, .header, [class*="header"], .top-bar {
+    position: static !important; 
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    clear: both !important;
+    margin: 0 0 15px 0 !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+}
+
+header nav, .header-container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+/* Container ko flexible banane ke liye */
+.dashboard-container, .main-dashboard, .grid-container, .tools-grid, .main-layout-split {
+    display: flex !important;
+    flex-wrap: wrap !important; 
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+/* Laptop View */
+@media screen and (min-width: 769px) {
+    .quick-tools, [class*="tools"] { flex: 1 1 300px !important; }
+    .ai-engine, [class*="engine"] { flex: 2 1 600px !important; }
+}
+
+/* Mobile View */
 @media screen and (max-width: 768px) {
-    /* Mobile par items ko upar-niche (column) set karega */
     .dashboard-container, .main-dashboard, .grid-container, .tools-grid, .main-layout-split {
         flex-direction: column !important; 
         padding: 10px !important;
     }
 
-    /* Left side aur Right side dono boxes ko 100% width dega */
-    [class*="tools"], [class*="engine"], .quick-tools, .ai-engine, .card, .tool-box, .widget, .graph-container {
+    [class*="tools"], [class*="engine"], .quick-tools, .ai-engine, .card, .tool-box, .widget, .graph-container, .ad-banner, [class*="sponsored"] {
         width: 100% !important;
         flex: 1 1 100% !important;
         margin-bottom: 15px !important;
         max-width: 100% !important;
         min-width: 0 !important;
+        box-sizing: border-box !important;
     }
 
     header, .header-container {
