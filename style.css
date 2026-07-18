@@ -1,0 +1,460 @@
+/* 1. Base Styles and Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+    background-color: #0f172a;
+    color: #f8fafc; /* Text white ho jayega */
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    padding-bottom: 80px;
+}
+nav {
+    background-color: #0f172a;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #38bdf8;
+}
+
+/* 3. Hero Section */
+.hero {
+    max-width: 800px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Hero Text Visibility Fix for Dark Mode */
+.hero h1 {
+    color: #ffffff !important; /* Ekdam chamkadar white */
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.03em;
+}
+
+.hero p {
+    color: #94a3b8 !important; /* Premium light grey text */
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 0 auto 25px auto;
+}
+
+/* Navigation links ko bhi bright karne ke liye */
+nav a {
+    color: #cbd5e1 !important;
+}
+nav a:hover {
+    color: #ffffff !important;
+}
+
+/* 4. Professional Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* 5. Personal Greeting Card */
+.greeting-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+    margin: 40px auto;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.greeting-card h2 {
+    color: #1e293b;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.btn-secondary {
+    background-color: #10b981;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
+}
+
+.btn-secondary:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+}
+/* 6. Professional Login Card Styling */
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    max-width: 450px;
+    margin: 40px auto;
+    border: 1px solid #e2e8f0;
+}
+
+.login-card h2 {
+    color: #0f172a;
+    font-size: 1.75rem;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+/* Input focus effect (jab click karein toh blue outline aaye) */
+.input-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Button width adjust karne ke liye utility class */
+.w-full {
+    width: 100%;
+    margin-top: 10px;
+}
+/* ==========================================
+   PREMIUM AUTH CARD WITH ANIMATIONS
+   ========================================== */
+
+/* 1. Main Premium Card Setup */
+.auth-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 24px; /* Soft round corners */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+    max-width: 440px;
+    margin: 50px auto;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.auth-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px); /* Subtle hover lift */
+}
+
+/* 2. Heading Design */
+.auth-card h2 {
+    color: #0f172a;
+    font-size: 1.85rem;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+/* 3. Smooth Fade & Slide Animation */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Is class ko hum JavaScript se add-remove karenge animation chalane ke liye */
+.form-animate {
+    animation: fadeInSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* 4. Inputs Text Styling */
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+}
+
+.input-group input:focus {
+    border-color: #2563eb;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    outline: none;
+}
+
+/* 5. Modern Toggle Link Styling */
+.toggle-text {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.toggle-text a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 700;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+/* Underline Animation on Hover */
+.toggle-text a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #2563eb;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.toggle-text a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+/* Show Password Checkbox Styling */
+.show-password-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding-left: 2px;
+}
+
+.show-password-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.checkbox-label {
+    font-size: 0.85rem !important;
+    color: #94a3b8 !important; /* Soft grey text for dark theme */
+    font-weight: 500 !important;
+    margin-bottom: 0 !important;
+    cursor: pointer;
+    user-select: none;
+}
+/* Dark Google UI Modal Background Overlay */
+.google-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.85); /* Poore piche ke content ko dark kar dega */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999 !important; /* Sabse top par rakhega code ko */
+}
+
+/* Modal Box Main Card */
+.google-modal-box {
+    background-color: #1f1f1f; /* Premium Dark Grey background */
+    width: 100%;
+    max-width: 420px;
+    padding: 30px 24px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #e8eaed;
+    position: relative;
+    border: 1px solid #3c4043;
+}
+
+/* Close button positioning */
+.google-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #9aa0a6;
+}
+.google-close-btn:hover { color: #fff; }
+
+/* Top mini header styling */
+.google-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: #e8eaed;
+    margin-bottom: 25px;
+}
+
+/* App square logo branding */
+.app-logo-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+.app-logo {
+    background-color: #1a233a;
+    color: #8ab4f8;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 4px;
+    border: 1px solid #3c4043;
+}
+
+/* Headings text spacing */
+.google-modal-box h2 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin: 5px 0;
+    color: #e8eaed;
+}
+.google-modal-box .subtitle {
+    font-size: 0.95rem;
+    color: #9aa0a6;
+    margin-bottom: 30px;
+}
+.google-modal-box .app-link {
+    color: #8ab4f8;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Account row mapping layout */
+.account-list {
+    margin-bottom: 30px;
+}
+.account-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #3c4043;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.account-item:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+}
+.account-item:last-child {
+    border-bottom: none;
+}
+
+/* Circular profile icons styling */
+.avatar-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #3c4043;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.branding-circle { background-color: #00796b; } /* For Official account icon look */
+.icon-circle { background-color: transparent; }
+
+/* Text details inside rows */
+.account-info {
+    display: flex;
+    flex-direction: column;
+}
+.account-info .name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #e8eaed;
+}
+.account-info .email {
+    font-size: 0.85rem;
+    color: #9aa0a6;
+}
+.another-account .name {
+    color: #8ab4f8; /* Standard Google link accent color */
+}
+
+/* Footnote Disclaimer texts */
+.terms-text {
+    font-size: 0.75rem;
+    color: #9aa0a6;
+    line-height: 1.4;
+}
+.terms-text a {
+    color: #8ab4f8;
+    text-decoration: none;
+}
+.terms-text a:hover { text-decoration: underline; }

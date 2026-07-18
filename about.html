@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUGGI BUGGI - Trending Streams Strategy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #202124; color: #e8eaed; padding-bottom: 50px; }
+        
+        header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .logo { font-size: 24px; font-weight: 800; letter-spacing: 1px; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 15px; }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        
+        .main-title-box { text-align: center; margin-bottom: 40px; }
+        .main-title { font-size: 36px; color: #ff8e53; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .main-subtitle { color: #9aa0a6; font-size: 16px; margin-top: 10px; }
+
+        /* Grid Layout matching your screen */
+        .streams-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        
+        .stream-card { background: #2d2d2d; border: 1px solid #3c4043; border-radius: 12px; padding: 25px; position: relative; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .stream-card:hover { transform: translateY(-5px); border-color: #ff8e53; box-shadow: 0 8px 25px rgba(255,142,83,0.15); }
+        
+        /* Badges styling */
+        .badge { display: inline-block; padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .badge.trending { background: #ea4335; color: white; }
+        .badge.viral { background: #1a73e8; color: white; }
+        .badge.featured { background: #34a853; color: white; }
+
+        .icon-wrapper { text-align: center; margin: 15px 0; font-size: 40px; }
+        
+        .meta-category { color: #ff8e53; font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+        .card-title { font-size: 20px; font-weight: 700; margin-bottom: 12px; line-height: 1.4; color: #ffffff; }
+        .card-desc { font-size: 14px; color: #9aa0a6; line-height: 1.6; margin-bottom: 20px; }
+        
+        .card-footer { display: flex; justify-content: space-between; font-size: 12px; color: #bdc1c6; border-top: 1px solid #3c4043; padding-top: 15px; }
+
+        /* Expanded Knowledge Box Style */
+        .knowledge-box { background: #1e1e1e; border: 2px solid #ff8e53; border-radius: 8px; padding: 20px; margin-top: 15px; display: none; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .knowledge-box h4 { color: #ffffff; font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px dashed #3c4043; padding-bottom: 6px; }
+        .knowledge-box ul { list-style: none; }
+        .knowledge-box ul li { font-size: 13.5px; color: #e8eaed; margin-bottom: 10px; line-height: 1.5; display: flex; align-items: flex-start; gap: 8px; }
+        .knowledge-box ul li i { color: #34a853; margin-top: 3px; }
+        
+        .click-hint { text-align: center; color: #ff8e53; font-size: 11px; font-weight: bold; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><i class="fa-solid fa-bolt" style="color: #ffba08;"></i> JUGGI BUGGI Studio</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="main-title-box">
+            <div class="main-title"><i class="fa-solid fa-fire"></i> Trending Streams</div>
+            <p class="main-subtitle">High-Retention Masterpieces & Community Favorites. (Click any card to unlock secret growth blueprints! 🔥)</p>
+        </div>
+
+        <div class="streams-grid">
+            
+            <!-- CARD 1: TRENDING -->
+            <div class="card-wrapper">
+                <div class="stream-card" onclick="toggleKnowledge('trending-info')">
+                    <span class="badge trending">#1 Trending</span>
+                    <div class="icon-wrapper"><i class="fa-solid fa-video" style="color: #ea4335;"></i></div>
+                    <div class="meta-category">Lifestyle Vlog</div>
+                    <div class="card-title">The Genesis of Creation: Unfiltered Daily Realities</div>
+                    <div class="card-desc">Translating raw, everyday human experiences into cinematic narratives that connect global audiences seamlessly.</div>
+                    <div class="card-footer">
+                        <span><i class="fa-solid fa-eye"></i> 45K views</span>
+                        <span><i class="fa-solid fa-clock"></i> 2 hours ago</span>
+                    </div>
+                    <div class="click-hint">👉 Click to view Trending Secrets</div>
+                </div>
+                
+                <!-- Hidden Strategy Box 1 -->
+                <div class="knowledge-box" id="trending-info">
+                    <h4><i class="fa-solid fa-arrow-trend-up" style="color:#ea4335;"></i> Trending Growth Blueprint</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>Hook Strategy:</b> Video ke pehle 3 seconds mein sabse bada suspense create karein, taaki user skip na kare.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>High Retention:</b> Apne vlogs mein boring parts ko cut karke background mein fast-paced copyright free music set karein.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>CTR Optimization:</b> Thumbnail par apne face ke expressions ekdam sharp aur textual fonts ekdam bold rakhein.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CARD 2: VIRAL -->
+            <div class="card-wrapper">
+                <div class="stream-card" onclick="toggleKnowledge('viral-info')">
+                    <span class="badge viral">Viral</span>
+                    <div class="icon-wrapper"><i class="fa-solid fa-rocket" style="color: #1a73e8;"></i></div>
+                    <div class="meta-category">Strategy</div>
+                    <div class="card-title">The Digital Revolution & Algorithm Adaptability</div>
+                    <div class="card-desc">How modern creators balance quick viewer patterns and digital presentation standards across high-speed media networks.</div>
+                    <div class="card-footer">
+                        <span><i class="fa-solid fa-eye"></i> 32K views</span>
+                        <span><i class="fa-solid fa-clock"></i> 5 hours ago</span>
+                    </div>
+                    <div class="click-hint">👉 Click to view Viral Secrets</div>
+                </div>
+                
+                <!-- Hidden Strategy Box 2 -->
+                <div class="knowledge-box" id="viral-info">
+                    <h4><i class="fa-solid fa-bolt" style="color:#1a73e8;"></i> Short & Reel Viral Secrets</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>Looping Audio Trick:</b> Reels aur Shorts mein trending audio ka loop is tarah banayein ki video kab khatam hui aur kab shuru hui, pata hi na chale.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>SEO Tags Match:</b> Dashboard se generate kiye huye tags ko copy karke description aur first comment dono jagah paste karein.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>High-Energy Scripting:</b> Viral videos mein voice-over ekdam clear aur energy se bhari honi chahiye.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CARD 3: FEATURED -->
+            <div class="card-wrapper">
+                <div class="stream-card" onclick="toggleKnowledge('featured-info')">
+                    <span class="badge featured">Featured</span>
+                    <div class="icon-wrapper"><i class="fa-solid fa-lightbulb" style="color: #34a853;"></i></div>
+                    <div class="meta-category">Motivation</div>
+                    <div class="card-title">Narrative Engineering: Power of the Lens</div>
+                    <div class="card-desc">Constructing intense emotional arcs, structured frameworks, and high-energy sequence timelines for massive growth.</div>
+                    <div class="card-footer">
+                        <span><i class="fa-solid fa-eye"></i> 18K views</span>
+                        <span><i class="fa-solid fa-clock"></i> 1 day ago</span>
+                    </div>
+                    <div class="click-hint">👉 Click to view Featured Secrets</div>
+                </div>
+                
+                <!-- Hidden Strategy Box 3 -->
+                <div class="knowledge-box" id="featured-info">
+                    <h4><i class="fa-solid fa-star" style="color:#34a853;"></i> Premium Featured Branding</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>Storytelling Arc:</b> Apne content ko Ek Intro, Problem, aur Final Resolution wale formula par set karein jo logo ke dil ko chhue.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>Community Building:</b> Har comment ka reply "Own Voice Poetry" ya stylish tarike se dein taaki log aapse jud sakein.</li>
+                        <li><i class="fa-solid fa-circle-check"></i> <b>Consistent Timeline:</b> Hafte mein fix time bana lijiye (jaise har Sunday raat 8 baje) video publish karne ka.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Smooth toggle expand action engine
+        function toggleKnowledge(id) {
+            var box = document.getElementById(id);
+            if (box.style.display === "block") {
+                box.style.display = "none";
+            } else {
+                // Hide all other open boxes first
+                document.querySelectorAll('.knowledge-box').forEach(el => el.style.display = 'none');
+                box.style.display = "block";
+                box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JUGGI BUGGI - Premium Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #202124; color: #e8eaed; padding-bottom: 50px; }
+        
+        /* Premium Header */
+        header { background: linear-gradient(135deg, #1a73e8, #0d47a1); color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 800; letter-spacing: 1px; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 25px; font-weight: 600; font-size: 15px; transition: 0.3s; }
+        .nav-links a:hover { color: #ff8e53; }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        
+        /* Title Box */
+        .title-box { text-align: center; margin-bottom: 50px; }
+        .title-box h1 { font-size: 38px; color: #ffffff; font-weight: 800; }
+        .title-box h1 span { color: #ff8e53; }
+        .title-box p { color: #9aa0a6; font-size: 16px; margin-top: 10px; font-weight: 500; }
+
+        /* Services Grid Layout */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .service-card { background: #2d2d2d; border: 1px solid #3c4043; border-radius: 12px; padding: 35px 25px; text-align: center; transition: 0.3s ease-in-out; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .service-card:hover { transform: translateY(-8px); border-color: #ff8e53; box-shadow: 0 12px 30px rgba(255,142,83,0.15); }
+        
+        .icon-box { width: 70px; height: 70px; background: #1a73e8; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px auto; font-size: 30px; transition: 0.3s; }
+        .service-card:hover .icon-box { background: #ff8e53; transform: rotate(360deg); }
+        
+        .service-title { font-size: 22px; font-weight: 700; color: #ffffff; margin-bottom: 15px; }
+        .service-desc { font-size: 14.5px; color: #9aa0a6; line-height: 1.6; margin-bottom: 20px; }
+        
+        /* Action Button */
+        .cta-btn { display: inline-block; padding: 10px 22px; background: transparent; border: 2px solid #1a73e8; color: #1a73e8; border-radius: 6px; font-weight: 700; font-size: 14px; text-decoration: none; transition: 0.3s; }
+        .service-card:hover .cta-btn { background: #ff8e53; border-color: #ff8e53; color: white; }
+
+        /* Footer Section */
+        footer { text-align: center; margin-top: 80px; padding-top: 20px; border-top: 1px solid #3c4043; color: #9aa0a6; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Area -->
+    <header>
+        <div class="logo"><i class="fa-solid fa-bolt" style="color: #ffba08;"></i> JUGGI BUGGI Studio</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        
+        <div class="title-box">
+            <h1>Our Premium <span>Creator Services</span></h1>
+            <p>Empowering digital storytellers and brands with next-generation content architecture.</p>
+        </div>
+
+        <div class="services-grid">
+            
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-clapperboard"></i></div>
+                <div class="service-title">Cinematic Storytelling</div>
+                <div class="service-desc">Turning everyday life scripts and concepts into high-retention vlogs and digital narratives that hook viewers instantly.</div>
+                <a href="#" class="cta-btn" onclick="alert('Inquiry form coming soon!')">Learn More</a>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="service-title">Growth Consulting</div>
+                <div class="service-desc">Deep data optimization, viral keyword setups, and strategic thumbnail engineering built to push your channels forward.</div>
+                <a href="#" class="cta-btn" onclick="alert('Inquiry form coming soon!')">Learn More</a>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="icon-box"><i class="fa-solid fa-handshake"></i></div>
+                <div class="service-title">Brand Collaborations</div>
+                <div class="service-desc">Bridging the gap between corporate brands and content creators for organic product placements and professional reach.</div>
+                <a href="#" class="cta-btn" onclick="alert('Inquiry form coming soon!')">Learn More</a>
+            </div>
+
+        </div>
+
+        <!-- Professional Footer Layout -->
+        <footer>
+            <p>&copy; 2026 JUGGI BUGGI Platform. Engineered for absolute growth performance.</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

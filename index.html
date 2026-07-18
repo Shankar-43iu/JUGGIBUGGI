@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Website</title>
+    <link rel="stylesheet" href="style.css">
+   <script src="https://accounts.google.com/gsi/client" async defer></script> 
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<!-- Main Hero Section -->
+<section class="hero">
+    <h1>Welcome to JUGGI BUGGI</h1>
+    <p>Exploring life, creative vlogging, and everyday experiences through digital storytelling.</p>
+    <a href="about.html" class="btn btn-primary">Watch Latest Vlogs</a>
+</section>
+
+    <!-- Interactive Greeting Card Section -->
+    <section class="greeting-card" style="font-family: 'Poppins', sans-serif; background: #ffffff; border-radius: 16px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin: 20px auto; max-width: 400px;">
+        <h2 id="greeting-title" style="font-size: 2.2rem; font-weight: 700; color: #1a1a1a; margin-bottom: 5px;">
+    Hello <span style="background: linear-gradient(45deg, #ff416c, #ff4b2b); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Raju!</span>
+</h2>
+        <p style="color: #666; font-size: 1rem; margin-bottom: 20px;">Welcome to my first website.</p>
+        <button id="click-btn" class="btn btn-secondary" onclick="showWelcomeMessage()" style="background: linear-gradient(135deg, #11998e, #38ef7d); color: white; border: none; padding: 12px 35px; font-size: 1rem; font-weight: 600; border-radius: 25px; cursor: pointer; box-shadow: 0 5px 15px rgba(56, 239, 125, 0.3);">Click Me</button>
+    </section>
+<!-- Dual Action Card: Login & Registration -->
+<section class="auth-card">
+    <!-- 1. LOGIN FORM CONTAINER -->
+    <div id="login-container">
+        <h2>Account Login</h2>
+        <form id="login-form">
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <a href="dashboard.html" style="text-decoration: none; display: block; width: 100%;">
+    <button type="button" class="btn btn-primary w-full">Sign In</button>
+</a>
+        </form>
+        <!-- Google Login Official System -->
+<div style="margin-top: 15px; display: flex; justify-content: center; width: 100%;">
+    <div id="g_id_onload"
+         data-client_id="604363679142-6kq4ud6sqrb3mrko4urvi4rcenefkrru.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
+    </div>
+
+    <div class="g_id_signin"
+         data-type="standard"
+         data-shape="rectangular"
+         data-theme="outline"
+         data-text="signin_with"
+         data-size="large"
+         data-logo_alignment="left"
+         data-width="320">
+    </div>
+</div>
+
+<script>
+function handleCredentialResponse(response) {
+    console.log("Login Success! Token: " + response.credential);
+    // Google se login hote hi seedhe user JUGGI BUGGI dashboard par pahunch jayega
+    window.location.href = "dashboard.html";
+}
+</script>
+
+<!-- UPDATE GOOGLE POPUP CONTAINER -->
+<div id="google-popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; align-items: center; justify-content: center;">
+    <div style="background: #ffffff; width: 360px; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); font-family: 'Segoe UI', sans-serif; position: relative; min-height: 380px;">
+        
+        <!-- Close Button -->
+        <span onclick="closeGooglePopup()" style="position: absolute; top: 12px; right: 15px; cursor: pointer; color: #5f6368; font-size: 1.2rem; font-weight: bold;">&times;</span>
+        
+        <!-- ================= STAGE 1: ACCOUNT SELECTION ================= -->
+        <div id="google-stage-accounts">
+            <center>
+                <!-- Offline Vector Google Logo -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" style="margin-bottom: 10px;">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69c-.29 1.5-1.14 2.77-2.4 3.63v3h3.86c2.26-2.09 3.59-5.17 3.59-8.48Z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.4v3.12C3.37 20.3 7.46 24 12 24Z"/>
+                    <path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.39-1.5-.39-2.29s.14-1.57.39-2.29V6.59H1.4C.51 8.37 0 10.37 0 12.5s.51 4.13 1.4 5.91l3.87-3.12Z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.44-3.44C17.93 1.19 15.22 0 12 0 7.46 0 3.37 3.7 1.4 7.62l3.87 3.12c.95-2.85 3.6-4.99 6.73-4.99Z"/>
+                </svg>
+                <h3 style="margin: 0 0 5px 0; color: #202124; font-size: 1.3rem; font-weight: 500;">Choose an account</h3>
+                <p style="margin: 0 0 20px 0; color: #5f6368; font-size: 0.9rem;">to continue to <strong>JUGGI BUGGI</strong></p>
+            </center>
+
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div onclick="showPermissionsStage('Shankar Mandal', 'shankarmandal@gmail.com')" style="display: flex; align-items: center; gap: 12px; padding: 10px; border-bottom: 1px solid #f1f3f4; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
+                    <div style="width: 36px; height: 36px; background: #4285F4; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">S</div>
+                    <div>
+                        <div style="font-size: 0.9rem; font-weight: 600; color: #3c4043;">Shankar Mandal</div>
+                        <div style="font-size: 0.8rem; color: #5f6368;">shankarmandal@gmail.com</div>
+                    </div>
+                </div>
+
+                <div onclick="showPermissionsStage('Juggi Buggi Vlogs', 'juggibuggivlogs@gmail.com')" style="display: flex; align-items: center; gap: 12px; padding: 10px; border-bottom: 1px solid #f1f3f4; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#f8f9fa'" onmouseout="this.style.background='transparent'">
+                    <div style="width: 36px; height: 36px; background: #10b981; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">J</div>
+                    <div>
+                        <div style="font-size: 0.9rem; font-weight: 600; color: #3c4043;">Juggi Buggi Vlogs</div>
+                        <div style="font-size: 0.8rem; color: #5f6368;">juggibuggivlogs@gmail.com</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 12px; padding: 12px 10px 5px 10px; cursor: pointer; color: #1a73e8; font-size: 0.9rem; font-weight: 500;">
+                    👤 Use another account
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 2: GOOGLE PERMISSIONS SIGN-IN ================= -->
+        <div id="google-stage-permissions" style="display: none;">
+            <center>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" style="margin-bottom: 5px;">
+                    <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v3.92h6.69c-.29 1.5-1.14 2.77-2.4 3.63v3h3.86c2.26-2.09 3.59-5.17 3.59-8.48Z"/>
+                    <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.4v3.12C3.37 20.3 7.46 24 12 24Z"/>
+                    <path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.39-1.5-.39-2.29s.14-1.57.39-2.29V6.59H1.4C.51 8.37 0 10.37 0 12.5s.51 4.13 1.4 5.91l3.87-3.12Z"/>
+                    <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.44-3.44C17.93 1.19 15.22 0 12 0 7.46 0 3.37 3.7 1.4 7.62l3.87 3.12c.95-2.85 3.6-4.99 6.73-4.99Z"/>
+                </svg>
+                <h4 style="margin: 5px 0; color: #202124; font-size: 1.1rem; font-weight: 500;">Juggi Buggi wants to access your Google Account</h4>
+                <p id="selected-email-display" style="margin: 0 0 15px 0; color: #5f6368; font-size: 0.85rem; font-weight: bold; background: #f1f3f4; padding: 4px 10px; border-radius: 20px; display: inline-block;"></p>
+            </center>
+
+            <div style="font-size: 0.85rem; color: #3c4043; line-height: 1.4; border-top: 1px solid #e8eaed; padding-top: 12px; margin-bottom: 20px;">
+                <p style="margin: 0 0 8px 0; font-weight: 600;">This will allow JUGGI BUGGI to:</p>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                    <span>✓</span>
+                    <span>See your primary Google Account email address.</span>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <span>✓</span>
+                    <span>See your personal info, including any public profile info you make available.</span>
+                </div>
+            </div>
+
+            <p style="font-size: 0.75rem; color: #70757a; margin-bottom: 20px;">
+                Make sure you trust Juggi Buggi. You can review or remove access at any time in your Google Account settings.
+            </p>
+
+            <!-- Bottom Action Buttons -->
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+                <button type="button" onclick="backToAccounts()" style="background: none; border: 1px solid #dadce0; color: #1a73e8; padding: 8px 16px; border-radius: 4px; font-weight: 500; cursor: pointer; font-size: 0.85rem;">Cancel</button>
+                <button type="button" onclick="finalRedirectDashboard()" style="background: #1a73e8; border: none; color: white; padding: 8px 20px; border-radius: 4px; font-weight: 500; cursor: pointer; font-size: 0.85rem; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">Allow</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+</button>
+
+        <p class="toggle-text">Don't have an account? <a href="#" id="to-register" onclick="toggleForm(event)">Create one here</a>
+    </div>
+
+    <!-- 2. REGISTRATION FORM CONTAINER (Shuru me hidden rahega) -->
+    <div id="register-container" style="display: none;">
+        <h2>Create Account</h2>
+        <form id="register-form">
+            <div class="input-group">
+                <label for="reg-name">Full Name</label>
+                <input type="text" id="reg-name" placeholder="Enter your full name" required>
+            </div>
+            <div class="input-group">
+                <label for="reg-email">Email Address</label>
+                <input type="email" id="reg-email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+    <label for="reg-password">Password</label>
+    <input type="password" id="reg-password" placeholder="Create a strong password" required>
+    <div class="show-password-container">
+        <input type="checkbox" id="toggle-reg-pass"> 
+        <label for="toggle-reg-pass" class="checkbox-label">Show Password</label>
+    </div>
+</div>
+            <button type="submit" class="btn btn-secondary w-full">Register Now</button>
+        </form>
+        <p class="toggle-text">Already have an account? <a href="#" id="to-login">Sign In here</a></p>
+    </div>
+</section>
+<script src="script.js"></script>
+<script>
+    // Popup open karne ke liye
+    function openGooglePopup() {
+        document.getElementById('google-stage-accounts').style.display = 'block';
+        document.getElementById('google-stage-permissions').style.display = 'none';
+        document.getElementById('google-popup-overlay').style.display = 'flex';
+    }
+
+    // Popup close karne ke liye
+    function closeGooglePopup() {
+        document.getElementById('google-popup-overlay').style.display = 'none';
+    }
+
+    // Account click karne par permissions page par le jane ke liye
+    function showPermissionsStage(name, email) {
+        document.getElementById('google-stage-accounts').style.display = 'none';
+        document.getElementById('selected-email-display').innerText = email;
+        document.getElementById('google-stage-permissions').style.display = 'block';
+    }
+
+    // Cancel karke wapas account selector par aane ke liye
+    function backToAccounts() {
+        document.getElementById('google-stage-permissions').style.display = 'none';
+        document.getElementById('google-stage-accounts').style.display = 'block';
+    }
+
+    // Final Allow par press karne ke baad dashboard loading redirection
+    function finalRedirectDashboard() {
+        window.location.href = 'dashboard.html';
+    }
+</script>
+
+<!-- DYNAMIC GOOGLE-STYLE COOKIE BANNER -->
+<div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #3c4043; display: flex; gap: 20px; align-items: center; justify-content: space-between; padding: 10px 20px; box-sizing: border-box; z-index: 10000; flex-wrap: wrap;">
+    <div style="font-size: 0.9rem; line-height: 1.5; max-width: 80%; color: #e8eaed;">
+        This site uses cookies from Google to deliver and enhance the quality of its services and to analyse traffic.
+    </div>
+    <div style="display: flex; gap: 20px; align-items: center;">
+        <a href="https://policies.google.com/technologies/cookies" target="_blank" style="color: #8ab4f8; text-decoration: none; font-size: 0.9rem;">Learn more</a>
+        <button type="button" onclick="this.closest('#cookie-banner').remove();" style="background: none; border: none; color: #8ab4f8; font-size: 0.9rem; cursor: pointer; font-weight: 500;">Got it</button>
+    </div>
+</div>
+<script>
+    // Popup open karne ke liye
+    function openGooglePopup() {
+        document.getElementById('google-stage-accounts').style.display = 'block';
+        document.getElementById('google-stage-permissions').style.display = 'none';
+        document.getElementById('google-popup-overlay').style.display = 'flex';
+    }
+
+    // Popup close karne ke liye
+    function closeGooglePopup() {
+        document.getElementById('google-popup-overlay').style.display = 'none';
+    }
+
+    // Account click karne par permissions page par le jane ke liye
+    function showPermissionsStage(name, email) {
+        document.getElementById('google-stage-accounts').style.display = 'none';
+        document.getElementById('selected-email-display').innerText = email;
+        document.getElementById('google-stage-permissions').style.display = 'block';
+    }
+
+    // Cancel karke wapas account selector par aane ke liye
+    function backToAccounts() {
+        document.getElementById('google-stage-permissions').style.display = 'none';
+        document.getElementById('google-stage-accounts').style.display = 'block';
+    }
+
+    // Final Allow par press karne ke baad dashboard loading redirection
+    function finalRedirectDashboard() {
+        window.location.href = 'dashboard.html';
+    }
+
+    // Cookie banner ko hide karne ke liye
+    function acceptCookies() {
+        var banner = document.getElementById('cookie-banner');
+        if (banner) {
+            banner.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
