@@ -458,65 +458,8 @@ nav a:hover {
     text-decoration: none;
 }
 .terms-text a:hover { text-decoration: underline; }
-/* ====================================================
-   MOBILE RESPONSIVE FIXES (JUGGI BUGGI STUDIO)
-   ==================================================== */
-@media screen and (max-width: 768px) {
-    
-    /* Pure page ko stretch hone se rokne ke liye */
-    html, body {
-        width: 100% !important;
-        overflow-x: hidden !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-
-    /* Header block (Blue color wala banner) ko mobile screen par fit karne ke liye */
-    header, .header, [class*="header"] {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-        left: 0 !important;
-        right: 0 !important;
-        padding: 10px 15px !important;
-    }
-
-    /* Dashboard ka main content box jo aaju-baaju fail raha hai */
-    .dashboard-container, .container, .main-content, main {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 10px !important;
-        box-sizing: border-box !important;
-    }
-
-    /* Jo cards desktop par side-by-side (agol-bagol) hain, unhe mobile par ek ke niche ek karne ke liye */
-    .grid, .grid-container, .cards-section, .tools-grid {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 15px !important;
-        width: 100% !important;
-    }
-
-    /* Individual items jaise AI Engine box, Graph box aur Sponsored Ads */
-    .card, .tool-box, .widget, .graph-container, .ad-banner, [class*="card"] {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important; /* Fix horizontal scaling block */
-        box-sizing: border-box !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-    /* Graph bars jo graph box se bahar ja rahi hain unhe fit karne ke liye */
-    .graph-bars-container {
-        display: flex !important;
-        justify-content: space-around !important;
-        width: 100% !important;
-        padding: 0 !important;
-    }
-}
-/* ====================================================
-   GLOBAL RESPONSIVE FIX (JUGGI BUGGI STUDIO)
+ /* ====================================================
+   GLOBAL RESPONSIVE ENGINE (LAPTOP + MOBILE)
    ==================================================== */
 
 *, *::before, *::after {
@@ -526,51 +469,52 @@ nav a:hover {
 html, body {
     width: 100% !important;
     max-width: 100% !important;
-    overflow-x: hidden !important; /* Content ko screen se bahar stretch hone se rokega */
+    overflow-x: hidden !important; 
     margin: 0 !important;
     padding: 0 !important;
 }
 
-/* Main Dashboard section ko center aur responsive karne ke liye */
-.main-dashboard, .dashboard-container, .container, main {
+/* Header Banner Fix */
+header, .header, [class*="header"] {
     width: 100% !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-    padding: 15px !important;
+    max-width: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
     box-sizing: border-box !important;
 }
 
-/* Grids ko wrap karne ke liye taaki items ek dusre par na chadein */
-.grid-container, .tools-grid, .main-layout-split {
+/* Container ko flexible banane ke liye */
+.dashboard-container, .main-dashboard, .grid-container, .tools-grid, .main-layout-split {
     display: flex !important;
-    flex-wrap: wrap !important;
+    flex-wrap: wrap !important; 
     gap: 20px !important;
     width: 100% !important;
 }
 
-/* Desktop aur Laptop par side-by-side display */
+/* Laptop View (Jab screen badi ho) */
 @media screen and (min-width: 769px) {
-    .quick-tools, .left-panel { flex: 1 1 300px !important; }
-    .ai-engine, .right-panel { flex: 2 1 600px !important; }
+    .quick-tools, [class*="tools"] { flex: 1 1 300px !important; }
+    .ai-engine, [class*="engine"] { flex: 2 1 600px !important; }
 }
 
-/* Mobile screens par single column layout */
+/* Mobile View (Jab screen choti ho) */
 @media screen and (max-width: 768px) {
-    .grid-container, .tools-grid, .main-layout-split {
-        flex-direction: column !important;
-    }
-    
-    header, .header-container, .top-bar {
-        width: 100% !important;
-        position: static !important;
-        left: 0 !important;
-        right: 0 !important;
+    /* Mobile par items ko upar-niche (column) set karega */
+    .dashboard-container, .main-dashboard, .grid-container, .tools-grid, .main-layout-split {
+        flex-direction: column !important; 
+        padding: 10px !important;
     }
 
-    .card, .tool-box, .widget, .graph-container, .ad-banner, [class*="card"] {
+    /* Left side aur Right side dono boxes ko 100% width dega */
+    [class*="tools"], [class*="engine"], .quick-tools, .ai-engine, .card, .tool-box, .widget, .graph-container {
         width: 100% !important;
+        flex: 1 1 100% !important;
+        margin-bottom: 15px !important;
         max-width: 100% !important;
         min-width: 0 !important;
-        margin: 0 0 15px 0 !important;
+    }
+
+    header, .header-container {
+        padding: 10px !important;
     }
 }
