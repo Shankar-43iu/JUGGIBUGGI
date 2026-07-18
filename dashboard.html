@@ -69,40 +69,41 @@
         /* Footer links */
         footer { background: #202124; color: #bdc1c6; padding: 30px 20px; text-align: center; margin-top: auto; border-top: 4px solid #1a73e8; }
         .footer-links a { color: #8ab4f8; text-decoration: none; margin: 0 15px; font-size: 14px; }
-        /* Mobile View Fixes for Dashboard */
+/* Mobile Border Aur Grid Alignment Fix */
 @media screen and (max-width: 768px) {
+    
+    /* 1. Blue Header ko dono taraf se barabar gap dene ke liye */
     header, .header, [class*="header"], .top-bar {
-        position: static !important; 
-        width: 100% !important;
+        position: relative !important;
+        width: calc(100% - 24px) !important;
         max-width: 100% !important;
+        margin: 12px auto !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
         display: block !important;
-        clear: both !important;
-        margin: 0 0 15px 0 !important;
         padding: 12px !important;
-        box-sizing: border-box !important;
+        clear: both !important;
     }
 
-    header nav, .header-container {
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-
-    .dashboard-container, .main-dashboard, .grid-container, .tools-grid, .main-layout-split {
-        display: flex !important;
-        flex-direction: column !important; 
-        padding: 10px !important;
-        width: 100% !important;
-    }
-
-    [class*="tools"], [class*="engine"], .quick-tools, .ai-engine, .card, .tool-box, .widget, .graph-container, .ad-banner, [class*="sponsored"] {
-        width: 100% !important;
-        flex: 1 1 100% !important;
-        margin-bottom: 15px !important;
+    /* 2. Green aur Orange Sponsored Banners ko center aur barabar karne ke liye */
+    [class*="sponsored"], .ad-banner, [class*="banner"], .sponsored-ad {
+        width: calc(100% - 24px) !important;
         max-width: 100% !important;
-        min-width: 0 !important;
+        margin: 0 auto 15px auto !important;
+        border-radius: 12px !important;
         box-sizing: border-box !important;
+        display: block !important;
+        float: none !important;
+    }
+
+    /* 3. Baki ke saare tools aur pure container ka mobile alignment */
+    .container, .dashboard-container, .main-dashboard, .card, .quick-tools, .ai-engine {
+        width: calc(100% - 24px) !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        box-sizing: border-box !important;
+        display: block !important;
+        float: none !important;
     }
 }
     </style>
