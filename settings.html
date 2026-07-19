@@ -3,87 +3,750 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Settings | JUGGI BUGGI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Account Settings - Creator Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .settings-wrapper {
-            max-width: 700px;
-            margin: 60px auto;
-            padding: 40px;
-            background: rgba(30, 41, 59, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            color: #ffffff;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .settings-header {
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
+
+        html {
+            scroll-behavior: smooth;
         }
-        .settings-header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #60a5fa;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: #f5f7fa;
+            color: #2c3e50;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        .form-group {
-            margin-bottom: 25px;
+
+        /* ============================================
+           HEADER & NAVIGATION
+           ============================================ */
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: #94a3b8;
-            font-weight: 500;
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
-        .form-group input {
+
+        .logo i {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           MAIN CONTAINER
+           ============================================ */
+        
+        .container {
+            max-width: 800px;
             width: 100%;
-            padding: 12px 16px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* ============================================
+           SETTINGS SECTION
+           ============================================ */
+        
+        .settings-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .settings-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .settings-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #2c3e50;
+        }
+
+        .settings-header i {
+            font-size: 2rem;
+            color: #667eea;
+        }
+
+        /* ============================================
+           FORM GROUPS
+           ============================================ */
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid #e0e6f2;
+            background: #f8f9fc;
+            color: #2c3e50;
             border-radius: 10px;
-            color: white;
+            font-size: 1rem;
             outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
-        .form-group input:focus {
-            border-color: #60a5fa;
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
         }
-        .btn-save {
-            padding: 12px 24px;
-            background: #2563eb;
-            color: white;
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-help-text {
+            font-size: 0.85rem;
+            color: #8899aa;
+            margin-top: 0.5rem;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* ============================================
+           BUTTON STYLES
+           ============================================ */
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
             border: none;
             border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
             cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            flex: 1;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-cancel {
+            background: #f0f0f0;
+            color: #2c3e50;
+            flex: 1;
+            justify-content: center;
+        }
+
+        .btn-cancel:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           SUCCESS MESSAGE
+           ============================================ */
+        
+        .success-message {
+            background: #d4edda;
+            border: 2px solid #28a745;
+            color: #155724;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .success-message.show {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           SECTIONS
+           ============================================ */
+        
+        .settings-section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .divider {
+            height: 1px;
+            background: #f0f0f0;
+            margin: 2rem 0;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: #bdc3c7;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            margin-top: auto;
+            border-top: 4px solid #667eea;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #8ab4f8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
             font-weight: 600;
         }
-        .btn-save:hover {
-            background: #1d4ed8;
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.25rem 0.75rem;
+                gap: 1.25rem;
+            }
+
+            .settings-card {
+                padding: 1.25rem;
+            }
+
+            .settings-header h1 {
+                font-size: 1.4rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .btn {
+                padding: 0.875rem 1.5rem;
+                min-height: 44px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header {
+                padding: 0.875rem 0.75rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .container {
+                padding: 1rem 0.5rem;
+            }
+
+            .settings-card {
+                padding: 1rem;
+                margin: 0 -0.5rem;
+                width: calc(100% + 1rem);
+                border-radius: 12px;
+            }
+
+            .settings-header {
+                margin-bottom: 1.5rem;
+                padding-bottom: 1rem;
+            }
+
+            .settings-header h1 {
+                font-size: 1.2rem;
+            }
+
+            .settings-header i {
+                font-size: 1.5rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            select,
+            textarea {
+                padding: 0.875rem 1rem;
+                font-size: 16px;
+                min-height: 44px;
+            }
+
+            label {
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1rem;
+            }
+
+            .button-group {
+                margin-top: 1.5rem;
+                padding-top: 1rem;
+            }
+
+            .btn {
+                padding: 0.75rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            footer {
+                padding: 1.5rem 0.75rem;
+            }
+
+            .footer-links {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .settings-header h1 {
+                font-size: 1rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="password"],
+            select {
+                font-size: 16px;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="settings-wrapper">
-        <div class="settings-header">
-            <h1>⚙️ Account Settings</h1>
-            <p style="color: #94a3b8;">Manage your profile and platform preferences</p>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo"><i class="fa-solid fa-bolt" style="color: #ffba08;"></i> <span>Creator Studio</span></div>
+        <div class="nav-links">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="login.html"><i class="fa-solid fa-sign-in-alt"></i> Sign In</a>
         </div>
-        
-        <form onsubmit="event.preventDefault(); alert('Settings Saved Successfully!');">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" value="Shankar Mandal">
+    </header>
+
+    <div class="container">
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+            <i class="fa-solid fa-check-circle"></i>
+            <span>Settings saved successfully!</span>
+        </div>
+
+        <!-- Settings Card -->
+        <div class="settings-card">
+            <div class="settings-header">
+                <i class="fa-solid fa-gear"></i>
+                <h1>Account Settings</h1>
             </div>
-            <div class="form-group">
-                <label>Channel / Blog Name</label>
-                <input type="text" value="JUGGI BUGGI">
-            </div>
-            <div class="form-group">
-                <label>Update Password</label>
-                <input type="password" placeholder="Enter new password">
-            </div>
-            <button type="submit" class="btn-save">Save Changes</button>
-        </form>
-        <br>
-        <center><a href="dashboard.html" style="color: #94a3b8; text-decoration: none;">← Back to Dashboard</a></center>
+
+            <form id="settingsForm" novalidate>
+                <!-- Profile Information Section -->
+                <div class="settings-section">
+                    <div class="section-title">
+                        <i class="fa-solid fa-user"></i> Profile Information
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">
+                            Full Name
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="fullName" 
+                            name="fullName" 
+                            placeholder="Enter your full name"
+                            value="John Doe"
+                            required
+                        >
+                        <div class="error-message" id="fullNameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="channelName">
+                            Channel / Brand Name
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="channelName" 
+                            name="channelName" 
+                            placeholder="Enter your channel name"
+                            value="Creator Studio"
+                            required
+                        >
+                        <div class="error-message" id="channelNameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            Email Address
+                            <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email"
+                            value="user@example.com"
+                            required
+                        >
+                        <div class="error-message" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea 
+                            id="bio" 
+                            name="bio" 
+                            placeholder="Tell us about yourself..."
+                        >Content creator and digital entrepreneur</textarea>
+                        <p class="form-help-text">Maximum 500 characters</p>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Security Section -->
+                <div class="settings-section">
+                    <div class="section-title">
+                        <i class="fa-solid fa-lock"></i> Security Settings
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentPassword">Current Password</label>
+                        <input 
+                            type="password" 
+                            id="currentPassword" 
+                            name="currentPassword" 
+                            placeholder="Enter your current password"
+                        >
+                        <div class="error-message" id="currentPasswordError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newPassword">New Password</label>
+                        <input 
+                            type="password" 
+                            id="newPassword" 
+                            name="newPassword" 
+                            placeholder="Enter new password (leave blank to keep current)"
+                        >
+                        <p class="form-help-text">Minimum 8 characters. Include uppercase, lowercase, and numbers.</p>
+                        <div class="error-message" id="newPasswordError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="Confirm new password"
+                        >
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <!-- Preferences Section -->
+                <div class="settings-section">
+                    <div class="section-title">
+                        <i class="fa-solid fa-sliders"></i> Preferences
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notiPreference">
+                            Notification Preference
+                        </label>
+                        <select id="notiPreference" name="notiPreference">
+                            <option value="all">All Notifications</option>
+                            <option value="important">Important Only</option>
+                            <option value="none">No Notifications</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="theme">Theme</label>
+                        <select id="theme" name="theme">
+                            <option value="light">Light Mode</option>
+                            <option value="dark">Dark Mode</option>
+                            <option value="auto">Auto (System Preference)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button type="submit" class="btn btn-save">
+                        <i class="fa-solid fa-check"></i> Save Changes
+                    </button>
+                    <a href="dashboard.html" class="btn btn-cancel">
+                        <i class="fa-solid fa-times"></i> Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Support</a>
+        </div>
+        <p>&copy; 2026 Creator Studio. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('settingsForm');
+        const successMessage = document.getElementById('successMessage');
+
+        // Form submission
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(el => {
+                el.classList.remove('show');
+                el.textContent = '';
+            });
+
+            // Validate inputs
+            const fullName = document.getElementById('fullName').value.trim();
+            const channelName = document.getElementById('channelName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const newPassword = document.getElementById('newPassword').value.trim();
+            const confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+            let hasErrors = false;
+
+            // Validate full name
+            if (!fullName) {
+                document.getElementById('fullNameError').textContent = 'Full name is required.';
+                document.getElementById('fullNameError').classList.add('show');
+                hasErrors = true;
+            }
+
+            // Validate channel name
+            if (!channelName) {
+                document.getElementById('channelNameError').textContent = 'Channel name is required.';
+                document.getElementById('channelNameError').classList.add('show');
+                hasErrors = true;
+            }
+
+            // Validate email
+            if (!email || !validateEmail(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+                document.getElementById('emailError').classList.add('show');
+                hasErrors = true;
+            }
+
+            // Validate passwords if provided
+            if (newPassword || confirmPassword) {
+                if (newPassword.length < 8) {
+                    document.getElementById('newPasswordError').textContent = 'Password must be at least 8 characters.';
+                    document.getElementById('newPasswordError').classList.add('show');
+                    hasErrors = true;
+                }
+
+                if (newPassword !== confirmPassword) {
+                    document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+                    document.getElementById('confirmPasswordError').classList.add('show');
+                    hasErrors = true;
+                }
+            }
+
+            if (!hasErrors) {
+                // Show success message
+                successMessage.classList.add('show');
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+
+                console.log('Settings saved:', {
+                    fullName,
+                    channelName,
+                    email,
+                    bio: document.getElementById('bio').value,
+                    notifications: document.getElementById('notiPreference').value,
+                    theme: document.getElementById('theme').value
+                });
+            }
+        });
+
+        // Email validation
+        function validateEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Clear error on input
+        document.querySelectorAll('input, textarea').forEach(field => {
+            field.addEventListener('input', () => {
+                const errorId = field.id + 'Error';
+                const errorEl = document.getElementById(errorId);
+                if (errorEl) {
+                    errorEl.classList.remove('show');
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

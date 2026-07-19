@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Creator Studio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.25);
+            padding: 2rem;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-header p {
+            color: #8899aa;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border: 2px solid #e0e6f2;
+            background: #f8f9fc;
+            color: #2c3e50;
+            border-radius: 10px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type="email"]:invalid,
+        input[type="password"]:invalid {
+            border-color: #e74c3c;
+        }
+
+        input[type="email"]:valid,
+        input[type="password"]:valid {
+            border-color: #34a853;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-alert {
+            background: #fee;
+            border: 2px solid #e74c3c;
+            color: #c0392b;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+            font-weight: 600;
+        }
+
+        .form-alert.show {
+            display: block;
+        }
+
+        .sign-in-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .sign-in-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .sign-in-btn:active {
+            transform: translateY(0);
+        }
+
+        .sign-in-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-footer {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .login-footer p {
+            color: #8899aa;
+            font-size: 0.9rem;
+        }
+
+        .login-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .login-footer a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .back-to-home {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            color: #764ba2;
+            transform: translateX(-4px);
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 0.5rem;
+            }
+
+            .login-container {
+                padding: 1.25rem;
+                border-radius: 14px;
+            }
+
+            .login-header h1 {
+                font-size: 1.4rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .login-header p {
+                font-size: 0.9rem;
+            }
+
+            .form-group {
+                margin-bottom: 1.25rem;
+            }
+
+            label {
+                font-size: 0.9rem;
+                margin-bottom: 0.625rem;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                padding: 0.875rem 1rem;
+                border-radius: 10px;
+                font-size: 16px;
+                min-height: 44px;
+            }
+
+            input[type="email"]:focus,
+            input[type="password"]:focus {
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+            .error-message {
+                font-size: 0.8rem;
+                margin-top: 0.4rem;
+            }
+
+            .form-alert {
+                padding: 0.875rem 1rem;
+                margin-bottom: 1.25rem;
+                font-size: 0.9rem;
+                border-radius: 10px;
+            }
+
+            .sign-in-btn {
+                padding: 0.875rem 1.5rem;
+                border-radius: 10px;
+                font-size: 0.95rem;
+                min-height: 44px;
+            }
+
+            .login-footer {
+                margin-top: 1.25rem;
+            }
+
+            .login-footer p {
+                font-size: 0.85rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .back-to-home {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.25rem;
+            }
+
+            .login-container {
+                padding: 1rem;
+                margin: 0.5rem 0;
+            }
+
+            .login-header h1 {
+                font-size: 1.2rem;
+            }
+
+            .login-header p {
+                font-size: 0.85rem;
+            }
+
+            input[type="email"],
+            input[type="password"] {
+                padding: 0.75rem 0.875rem;
+                font-size: 16px;
+            }
+
+            .sign-in-btn {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .error-message {
+                font-size: 0.75rem;
+            }
+
+            .form-alert {
+                padding: 0.75rem 0.875rem;
+                font-size: 0.8rem;
+            }
+
+            .login-footer p {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <a href="index.html" class="back-to-home"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        
+        <div class="login-header">
+            <h1><i class="fa-solid fa-bolt" style="color: #ffba08;"></i> Creator Studio</h1>
+            <p>Sign in to your account</p>
+        </div>
+
+        <form id="loginForm" novalidate>
+            <!-- Error Alert Box -->
+            <div class="form-alert" id="errorAlert">
+                <i class="fa-solid fa-exclamation-circle"></i> 
+                <span id="alertMessage"></span>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">
+                    Email Address
+                    <span class="required">*</span>
+                </label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    required
+                    autocomplete="email"
+                >
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">
+                    Password
+                    <span class="required">*</span>
+                </label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                    autocomplete="current-password"
+                >
+                <div class="error-message" id="passwordError"></div>
+            </div>
+
+            <!-- Sign In Button -->
+            <button type="submit" class="sign-in-btn" id="signInBtn">
+                <i class="fa-solid fa-sign-in-alt"></i> Sign In
+            </button>
+        </form>
+
+        <!-- Footer Links -->
+        <div class="login-footer">
+            <p>Don't have an account? <a href="index.html">Create one</a></p>
+            <p><a href="index.html">Forgot your password?</a></p>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const errorAlert = document.getElementById('errorAlert');
+        const alertMessage = document.getElementById('alertMessage');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+        const signInBtn = document.getElementById('signInBtn');
+
+        // Clear error message when user starts typing
+        emailInput.addEventListener('input', () => {
+            emailError.classList.remove('show');
+            emailError.textContent = '';
+        });
+
+        passwordInput.addEventListener('input', () => {
+            passwordError.classList.remove('show');
+            passwordError.textContent = '';
+        });
+
+        // Form submission handler
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Reset error states
+            errorAlert.classList.remove('show');
+            emailError.classList.remove('show');
+            passwordError.classList.remove('show');
+            emailError.textContent = '';
+            passwordError.textContent = '';
+
+            // Get trimmed values
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // Validate email
+            const isEmailValid = validateEmail(email);
+            
+            // Validate password
+            const isPasswordValid = password.length > 0;
+
+            let hasErrors = false;
+
+            // Check email validation
+            if (!email) {
+                emailError.textContent = 'Email address is required.';
+                emailError.classList.add('show');
+                hasErrors = true;
+            } else if (!isEmailValid) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailError.classList.add('show');
+                hasErrors = true;
+            }
+
+            // Check password validation
+            if (!password) {
+                passwordError.textContent = 'Password is required.';
+                passwordError.classList.add('show');
+                hasErrors = true;
+            } else if (password.length < 6) {
+                passwordError.textContent = 'Password must be at least 6 characters long.';
+                passwordError.classList.add('show');
+                hasErrors = true;
+            }
+
+            // If there are errors, show alert box
+            if (hasErrors) {
+                alertMessage.textContent = 'Please correct the errors above and try again.';
+                errorAlert.classList.add('show');
+                return;
+            }
+
+            // If all validations pass, redirect to dashboard
+            console.log('Form is valid. Redirecting to dashboard...');
+            loginForm.submit(); // This will naturally redirect if you set form action
+            // Or use: window.location.href = 'dashboard.html';
+        });
+
+        // Email validation function
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Optional: Add real-time validation feedback
+        emailInput.addEventListener('blur', () => {
+            const email = emailInput.value.trim();
+            if (email && !validateEmail(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                emailError.classList.add('show');
+            }
+        });
+
+        passwordInput.addEventListener('blur', () => {
+            const password = passwordInput.value.trim();
+            if (password && password.length < 6) {
+                passwordError.textContent = 'Password must be at least 6 characters.';
+                passwordError.classList.add('show');
+            }
+        });
+    </script>
+
+</body>
+</html>

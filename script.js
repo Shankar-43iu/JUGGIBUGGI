@@ -1,76 +1,172 @@
-function generateKeywords() {
-    var queryInput = document.querySelector('input[placeholder*="e.g., Daily"]');
-    if (!queryInput) {
-        queryInput = document.getElementById('seo-search-input');
+// =====================================================
+// CONTENT GENERATION FUNCTIONS
+// =====================================================
+
+/**
+ * Quick fill function for sidebar buttons
+ * Populates search input and generates content
+ */
+function quickFill(topic) {
+    const searchInput = document.getElementById('keyword-search');
+    if (searchInput) {
+        searchInput.value = topic;
+        searchInput.focus();
+        // Trigger generation after a short delay
+        setTimeout(() => {
+            generateViralContent();
+        }, 100);
+    } else {
+        console.warn('Search input not found');
     }
-    var query = queryInput ? queryInput.value.trim().toLowerCase() : '';
+}
+
+/**
+ * Load recent searches - shows popular topics
+ */
+function loadRecentSearches() {
+    const recentTopics = ['Fashion', 'Lifestyle', 'Travel', 'Food', 'Technology', 'Beauty'];
+    const randomTopic = recentTopics[Math.floor(Math.random() * recentTopics.length)];
+    quickFill(randomTopic);
+}
+
+/**
+ * Generate viral keywords and titles based on user input
+ * Fixed to work with dashboard structure
+ */
+function generateViralContent() {
+    // Find input field with proper error handling
+    var queryInput = document.querySelector('input[placeholder*="e.g., Daily"]') || 
+                     document.querySelector('input[placeholder*="Type your topic"]') ||
+                     document.getElementById('keyword-search');
     
-    var kl = document.getElementById('keyword-list');
-    var tl = document.getElementById('title-list');
-    
-    if(!query) {
-        alert("Pehle koi topic toh daalo bhai! (e.g., Vlog, Shayari, Trading)");
+    if (!queryInput) {
+        console.warn('Input field not found');
         return;
     }
 
+    var query = queryInput.value.trim().toLowerCase();
+    
+    // Get target elements
+    var keywordBox = document.getElementById('tags-box');
+    var titleBox = document.getElementById('titles-box');
+    
+    // Validate input
+    if (!query) {
+        alert("Please enter a topic first! (e.g., Fashion, Lifestyle, Travel)");
+        return;
+    }
+
+    // Default keywords and titles
     var keywords = [
-        "How to viral " + query + " video on YouTube",
-        "Trending " + query + " ideas",
-        "Best " + query + " setups",
-        query + " guide"
+        "#" + query + "viral",
+        "#" + query + "trending",
+        "#" + query + "tips",
+        "#" + query + "guide",
+        "#viral",
+        "#trending",
+        "#content"
     ];
 
     var titles = [
-        "My First " + query,
-        "The Ultimate Secret of " + query + " !",
-        "Don't Make This Mistake in " + query + " !",
-        "Trying " + query + " For 24 Hours!"
+        "🔥 How to Create Viral " + query + " Content in 2026",
+        "⚡ The Ultimate " + query + " Guide You're Missing",
+        "🚀 " + query + " Tips That Actually Work!",
+        "💡 Learn Professional " + query + " Techniques"
     ];
 
-    if(query.includes('vlog') || query.includes('blog')) {
-        keywords = ["Daily Lifestyle Vlog 2026", "Family vlog behind the scenes", "Indian village travel vlog", "Cinematic mobile editing"];
-        titles = ["Finally Yeh Sab Ho Gaya! 😮", "Mummy Ne Sab Kharab Kardiya 😭", "Traveling Unknown City! ⛺", "My Real Daily Routine | Juggi Buggi"];
-    } else if(query.includes('shayari') || query.includes('poetry')) {
-        keywords = ["Own voice motivational shayari", "Sad emotional status reels", "Love shayari captions", "Attitude shayari music"];
-        titles = ["Dil Ko Chhu Jane Wali Shayari 💔", "Sunna Zaroor: Kismat Par Poetry 🔥", "When Silence Speaks... ✨", "Viral Shayari Reel Editing"];
-    } else if(query.includes('trading') || query.includes('stock') || query.includes('market')) {
-        keywords = ["Intraday trading strategies", "Swing trading technical analysis", "Top 5 growth stocks", "Risk management tips"];
-        titles = ["I Made ₹10,000 in 10 Minutes! 😲", "Don't Start Trading Before This! 🛑", "Technical Analysis Masterclass", "How I Select Stocks | Tutorial"];
-    } else if(query.includes('instagram') || query.includes('social') || query.includes('facebook')) {
-        keywords = ["Grow on Instagram algorithm", "Viral hashtags for reels", "Best time to post", "Professional bio setup"];
-        titles = ["From 0 to 100K Followers! 📈", "The Secret Strategy! 🤫", "Stop Posting Like This! 🛑", "How I Make Professional Content"];
+    // Category-specific customization
+    if (query.includes('fashion')) {
+        keywords = ["#fashiontrends", "#fashiontips", "#styling", "#outfitinspo", "#fashionblogger", "#fashionista", "#lookbook"];
+        titles = ["👗 Latest Fashion Trends 2026", "✨ Fashion Styling Hacks", "💄 How to Create Great Looks", "👠 Complete Fashion Guide"];
+    }
+    else if (query.includes('lifestyle')) {
+        keywords = ["#lifestyle", "#dailylife", "#livinbest", "#motivation", "#inspiration", "#selfcare", "#wellness"];
+        titles = ["🌟 Daily Lifestyle Tips", "💪 How to Improve Your Life", "🏡 Best Lifestyle Hacks", "✨ Living Your Best Life"];
+    }
+    else if (query.includes('history')) {
+        keywords = ["#history", "#historical", "#heritage", "#culture", "#interesting", "#facts", "#learning"];
+        titles = ["📚 Fascinating History Facts", "🏛️ Historical Events Explained", "📖 Must-Know History Lessons", "🌍 World History Guide"];
+    }
+    else if (query.includes('vlog') || query.includes('blog')) {
+        keywords = ["#vloglife", "#dailyvlog", "#vlogging", "#cinematic", "#travel", "#lifestyle", "#content"];
+        titles = ["📹 How I Film Professional Vlogs", "🎥 Vlogging Setup & Editing Guide", "✨ Daily Vlog Ideas That Go Viral", "🌟 Complete Vlogging Tutorial"];
+    } 
+    else if (query.includes('shayari') || query.includes('poetry')) {
+        keywords = ["#shayari", "#poetry", "#urdu", "#emotional", "#viral", "#reels", "#trending"];
+        titles = ["💔 Emotional Shayari Collection", "✍️ How to Write Viral Shayari", "🎵 Best Shayari Reels Guide", "📖 Poetry Writing Masterclass"];
+    } 
+    else if (query.includes('trading') || query.includes('stock') || query.includes('market')) {
+        keywords = ["#trading", "#stocks", "#market", "#invest", "#finance", "#analysis", "#tips"];
+        titles = ["📈 Stock Market Trading Guide", "💰 Best Trading Strategies 2026", "🎯 Technical Analysis Basics", "🔍 How to Pick Winning Stocks"];
+    } 
+    else if (query.includes('instagram') || query.includes('social') || query.includes('facebook')) {
+        keywords = ["#instagram", "#reels", "#viral", "#growth", "#socialmedia", "#trending", "#engage"];
+        titles = ["📱 How to Grow Instagram Fast", "🚀 Viral Reels Strategy", "⭐ Instagram Algorithm Secrets", "💬 Social Media Growth Hacks"];
     }
 
-    if (kl) {
-        kl.innerHTML = '';
-        keywords.forEach(function(kw) { 
-            kl.innerHTML += '<li><strong>' + kw + '</strong> <span style="color: #8ab4f8; font-size: 0.8rem; margin-left: 10px;">🔥 High Vol</span></li>'; 
-        });
+    // Update keywords/tags efficiently
+    if (keywordBox) {
+        keywordBox.innerHTML = keywords.map(kw => 
+            `<span class="tag">${kw}</span>`
+        ).join('');
     }
 
-    if (tl) {
-        tl.innerHTML = '';
-        titles.forEach(function(tt) { 
-            tl.innerHTML += '<li>' + tt + ' <span style="color: #00e676; font-size: 0.8rem; margin-left: 10px;">⚡ 9.8% CTR</span></li>'; 
-        });
+    // Update titles efficiently
+    if (titleBox) {
+        titleBox.innerHTML = titles.map(title => 
+            `<div class="title-item">${title}</div>`
+        ).join('');
     }
-} 
-// Create one here par click karne par login form ko chhupane aur register form ko dikhane ke liye
-function toggleForm(event) {
-    if (event) event.preventDefault(); // Page ko automatic reload hone se rokne ke liye
+
+    // Update metrics dynamically
+    updateMetrics();
+}
+
+/**
+ * Update metrics with random values
+ */
+function updateMetrics() {
+    var volumeElement = document.getElementById('stat-volume');
+    var usersElement = document.getElementById('stat-users');
     
-    var loginCard = document.getElementById('login-container');
-    var registerCard = document.getElementById('register-container');
-    
-    if (loginCard && registerCard) {
-        loginCard.style.display = 'none';
-        registerCard.style.display = 'block';
+    if (volumeElement) {
+        volumeElement.textContent = (Math.random() * (250 - 60) + 60).toFixed(1) + "K";
+    }
+    if (usersElement) {
+        usersElement.textContent = Math.floor(Math.random() * (50000 - 10000) + 10000).toLocaleString();
     }
 }
-// Got it button par click karne par cookie banner ko chhupane ke liye
+
+/**
+ * Alias function for generateViralContent (called from dashboard)
+ */
+function generateViralContent() {
+    return generateKeywords();
+}
+
+/**
+ * Toggle between login and register forms
+ * (Removed - no longer needed in current structure)
+ */
+function toggleForm(event) {
+    if (event) event.preventDefault();
+    console.log('Form toggle called - this function is deprecated in the current version');
+}
+
+/**
+ * Dismiss cookie banner
+ * (Removed - no cookie banner in current structure)
+ */
 function dismissCookieBanner() {
     var banner = document.getElementById('cookie-banner');
     if (banner) {
         banner.style.display = 'none';
     }
 }
+
+// =====================================================
+// ERROR HANDLING & LOGGING
+// =====================================================
+
+// Log script initialization
+console.log('✅ Script.js loaded successfully');
